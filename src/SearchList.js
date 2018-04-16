@@ -350,7 +350,7 @@ export default class SearchList extends Component {
   }
 
   render () {
-    const itemSearch = _.debounce((term) => { this.search(term) }, 300)
+    const itemSearch = _.debounce((term) => { this.search(term) }, 200)
 
     return (
       <Animated.View
