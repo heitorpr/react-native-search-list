@@ -98,7 +98,7 @@ export default class SearchBar extends Component {
   }
 
   cancelSearch () {
-    this.setState({ value: "" })
+    this.setState({ value: "teste do heitor" })
 
     this.searchInput.clear()
     this.searchInput.blur()
