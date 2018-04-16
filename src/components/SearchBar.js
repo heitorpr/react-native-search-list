@@ -70,7 +70,7 @@ export default class SearchBar extends Component {
   }
 
   doSearch () {
-    this.onChange(this.state.value)
+    console.log(this.state)
   }
 
   onBlur () {
@@ -84,12 +84,6 @@ export default class SearchBar extends Component {
 
   searchingAnimation (isSearching) {
     let toVal = 0
-
-    if(isSearching && this.state.animatedValue.value === 0) {
-      return
-    } else if(!isSearching && this.state.animatedValue.value !== 0) {
-      return
-    }
 
     if (isSearching) {
       this.state.animatedValue.setValue(0)
