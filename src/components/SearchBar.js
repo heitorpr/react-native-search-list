@@ -62,6 +62,8 @@ export default class SearchBar extends Component {
       isShowHolder: true,
       animatedValue: new Animated.Value(0)
     }
+
+    this.doSearch = this.doSearch.bind(this);
   }
 
   onChange (value) {
@@ -70,7 +72,7 @@ export default class SearchBar extends Component {
   }
 
   doSearch () {
-    console.log(this.searchInput.value)
+    console.log(this.state)
   }
 
   onBlur () {
