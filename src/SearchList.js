@@ -28,6 +28,8 @@ import Theme from './components/Theme'
 import SearchService from './SearchService'
 import HighlightableText from './components/HighlightableText'
 
+import _ from 'lodash'
+
 export default class SearchList extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
