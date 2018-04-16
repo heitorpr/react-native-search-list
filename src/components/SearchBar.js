@@ -104,6 +104,35 @@ export default class SearchBar extends Component {
     this.props.onClickCancel && this.props.onClickCancel()
   }
 
+  renderCancel() {
+    return (
+      <View style={{
+        width: buttonWidth,
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <TouchableWithoutFeedback onPress={this.cancelSearch.bind(this)} >
+          <View
+            style={{
+              flex: 1,
+              height: Theme.size.searchInputHeight,
+              width: buttonWidth,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 5
+            }}
+            shouldRasterizeIOS
+            renderToHardwareTextureAndroid
+          >
+            <Text
+              style={{color: this.props.cancelTextColor}}
+              numberOfLines={1}>{this.props.cancelTitle}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    )
+  }
+
   render () {
     return (
       <View
@@ -181,30 +210,8 @@ export default class SearchBar extends Component {
             }}>{this.props.placeholder}</Text>
           </Animated.View>
         </Animated.View>
-        <View style={{
-          width: buttonWidth,
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
-          <TouchableWithoutFeedback onPress={this.cancelSearch.bind(this)}>
-            <View
-              style={{
-                flex: 1,
-                height: Theme.size.searchInputHeight,
-                width: buttonWidth,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 5
-              }}
-              shouldRasterizeIOS
-              renderToHardwareTextureAndroid
-            >
-              <Text
-                style={{color: this.props.cancelTextColor}}
-                numberOfLines={1}>{this.props.cancelTitle}</Text>
-            </View>
-          </TouchableWithoutFeedback>
-        </View>
+
+        {this.renderCancel()}
       </View>
     )
   };
