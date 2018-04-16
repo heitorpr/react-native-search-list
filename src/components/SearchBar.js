@@ -102,6 +102,8 @@ export default class SearchBar extends Component {
     this.searchInput.blur()
     this.searchingAnimation(false)
     this.props.onClickCancel && this.props.onClickCancel()
+
+    console.log("heitor_teste-heitor"+this.searchInput.value)
   }
 
   renderCancel() {
