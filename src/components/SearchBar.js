@@ -58,7 +58,7 @@ export default class SearchBar extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      value: props.value,
+      value: '',
       isShowHolder: true,
       animatedValue: new Animated.Value(0)
     }
@@ -99,7 +99,7 @@ export default class SearchBar extends Component {
 
   cancelSearch () {
     this.setState({ value: '' });
-    
+    this.searchInput.clear()
     this.searchInput.blur()
     this.searchingAnimation(false)
     this.props.onClickCancel && this.props.onClickCancel()
@@ -171,15 +171,17 @@ export default class SearchBar extends Component {
             onFocus={this.onFocus.bind(this)}
             onBlur={this.onBlur.bind(this)}
             ref={input => { this.searchInput = input }}
+            onChangeText={this.onChange.bind(this)}
+            value={this.state.value}
+            underlineColorAndroid='transparent'
+            returnKeyType='search'
+            autoCorrect={false}
+            spellCheck={false}
             style={[styles.searchTextInputStyle, {
               color: this.props.searchInputTextColorActive && !this.state.isShowHolder
                 ? this.props.searchInputTextColorActive
                 : this.props.searchInputTextColor || '#979797'
-            }, this.props.searchTextInputStyle]}
-            onChangeText={this.onChange.bind(this)}
-            value={this.state.value}
-            underlineColorAndroid='transparent'
-            returnKeyType='search' />
+            }, this.props.searchTextInputStyle]} />
 
           <Animated.View
             pointerEvents='none'
