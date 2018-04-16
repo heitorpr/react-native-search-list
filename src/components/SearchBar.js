@@ -69,6 +69,10 @@ export default class SearchBar extends Component {
     this.setState({str})
   }
 
+  doSearch () {
+    this.props.onChange && this.props.onChange(this.state.value)
+  }
+
   onBlur () {
     this.props.onBlur && this.props.onBlur()
   }
@@ -80,6 +84,12 @@ export default class SearchBar extends Component {
 
   searchingAnimation (isSearching) {
     let toVal = 0
+
+    if(isSearching && this.state.animatedValue.value === 0) {
+      return
+    } else if(!isSearching && this.state.animatedValue.value !== 0) {
+      return
+    }
 
     if (isSearching) {
       this.state.animatedValue.setValue(0)
@@ -177,6 +187,7 @@ export default class SearchBar extends Component {
             returnKeyType='search'
             autoCorrect={false}
             spellCheck={false}
+            onSubmitEditing={this.doSearch}
             style={[styles.searchTextInputStyle, {
               color: this.props.searchInputTextColorActive && !this.state.isShowHolder
                 ? this.props.searchInputTextColorActive
