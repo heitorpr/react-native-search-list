@@ -153,11 +153,14 @@ export default class SearchList extends Component {
     })
   }
 
+  normalizeString(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().trim()
+  }
+
   search (input) {
     this.searchStr = input
     if (input) {
-      input = sTrim(input)
-      const tempResult = SearchService.search(this.copiedSource, input.toLowerCase())
+      const tempResult = SearchService.search(this.copiedSource, this.normalizeString(input))
       if (tempResult.length === 0) {
         this.setState({
           isSearching: true,
