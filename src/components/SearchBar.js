@@ -70,7 +70,7 @@ export default class SearchBar extends Component {
   }
 
   doSearch () {
-    console.log(this.state)
+    console.log(this.searchInput.value)
   }
 
   onBlur () {
