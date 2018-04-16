@@ -98,8 +98,8 @@ export default class SearchBar extends Component {
   }
 
   cancelSearch () {
-    this.refs.input.clear()
-    this.refs.input.blur()
+    this.searchInput.clear()
+    this.searchInput.blur()
     this.searchingAnimation(false)
     this.props.onClickCancel && this.props.onClickCancel()
   }
@@ -169,7 +169,7 @@ export default class SearchBar extends Component {
           <TextInput
             onFocus={this.onFocus.bind(this)}
             onBlur={this.onBlur.bind(this)}
-            ref='input'
+            ref={input => { this.searchInput = input }}
             style={[styles.searchTextInputStyle, {
               color: this.props.searchInputTextColorActive && !this.state.isShowHolder
                 ? this.props.searchInputTextColorActive
