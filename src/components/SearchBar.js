@@ -64,13 +64,13 @@ export default class SearchBar extends Component {
     }
   }
 
-  onChange (str) {
-    this.props.onChange && this.props.onChange(str)
-    this.setState({str})
+  onChange (value) {
+    this.props.onChange && this.props.onChange(value)
+    this.setState({value})
   }
 
   doSearch () {
-    this.props.onChange && this.props.onChange(this.state.value)
+    this.onChange(this.state.value)
   }
 
   onBlur () {
