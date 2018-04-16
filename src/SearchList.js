@@ -114,6 +114,7 @@ export default class SearchList extends Component {
     this.copiedSource = []
 
     pinyin.setOptions({checkPolyphone: false, charCase: 2})
+    this.search = this.search.bind(this)
   }
 
   static getSectionData (dataBlob, sectionID) {
@@ -347,6 +348,8 @@ export default class SearchList extends Component {
   }
 
   render () {
+    const itemSearch = _.debounce((term) => { this.search(term) }, 300)
+
     return (
       <Animated.View
         ref='view'
@@ -385,7 +388,7 @@ export default class SearchList extends Component {
           <SearchBar
             placeholder={this.props.searchInputPlaceholder ? this.props.searchInputPlaceholder : ''}
 
-            onChange={this.search.bind(this)}
+            onChange={itemSearch}
             onFocus={this.onFocus.bind(this)}
             onBlur={this.onBlur.bind(this)}
 
