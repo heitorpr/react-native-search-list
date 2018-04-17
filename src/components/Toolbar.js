@@ -84,7 +84,7 @@ const { width } = Dimensions.get('window')
 let styles = StyleSheet.create({
   container: {
     height: Theme.size.headerHeight,
-    paddingTop: 4,
+    paddingTop: 8,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#171a23'
