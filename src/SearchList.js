@@ -385,6 +385,7 @@ export default class SearchList extends Component {
             title={this.props.title}
             textColor={this.props.titleTextColor}
             renderBackButton={this.props.renderBackButton || this._renderBackButton.bind(this)}
+            renderTitle={this.props.renderTitle}
           />
 
           <SearchBar
