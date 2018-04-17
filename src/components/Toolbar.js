@@ -87,13 +87,12 @@ let styles = StyleSheet.create({
     backgroundColor: '#171a23'
   },
   titleStyle: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flex: 1
+    width: (width * 0.7),
+    alignSelf: 'center',
   },
   titleTextStyle: {
     fontSize: 18,
+    textAlign: 'center',
     fontWeight: '600'
   }
 })
