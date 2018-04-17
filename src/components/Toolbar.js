@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Animated
+  Animated,
+  Dimensions
 } from 'react-native'
 import PropTypes from 'prop-types'
 import Theme from './Theme'
