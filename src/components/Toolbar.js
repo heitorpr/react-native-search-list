@@ -14,7 +14,16 @@ let statusBarSize = (Platform.OS === 'ios' ? 20 : 0)
 export default class Toolbar extends Component {
   static propTypes = {
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.number]),
-    renderToolbar: PropTypes.func
+    renderBackButton: PropTypes.func,
+    renderRightButton: PropTypes.func,
+    renderTitle: PropTypes.func,
+
+    title: PropTypes.string,
+    textColor: PropTypes.string
+  }
+
+  static defaultProps = {
+    textColor: 'white'
   }
 
   render () {
@@ -24,15 +33,45 @@ export default class Toolbar extends Component {
         style={[styles.container, style]}
         shouldRasterizeIOS
         renderToHardwareTextureAndroid>
-        {this._renderToolbar()}
+        {this._renderBackButton()}
+        {this._renderTitle()}
+        {this._renderRightButton()}
       </Animated.View>
     )
   }
 
-  _renderToolbar () {
-    const {renderToolbar} = this.props
-    if (renderToolbar) {
-      return renderToolbar()
+  _renderBackButton () {
+    const {renderBackButton} = this.props
+    if (renderBackButton) {
+      return renderBackButton()
+    }
+
+    return null
+  }
+
+  _renderTitle () {
+    const {renderTitle, title, textColor} = this.props
+    if (renderTitle) {
+      return renderTitle()
+    } else {
+      return (
+        <View style={[styles.titleStyle]}>
+          <Text
+            style={[styles.titleTextStyle, {
+              color: textColor
+            }]}
+            numberOfLines={1}>
+            {title}
+          </Text>
+        </View>
+      )
+    }
+  }
+
+  _renderRightButton () {
+    const {renderRightButton} = this.props
+    if (renderRightButton) {
+      return renderRightButton()
     }
 
     return null
@@ -46,5 +85,14 @@ let styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#171a23'
+  },
+  titleStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flex: 1
+  },
+  titleTextStyle: {
+    fontSize: 18
   }
 })
