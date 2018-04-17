@@ -71,7 +71,7 @@ export default class SearchList extends Component {
 
     onScrollToSection: PropTypes.func,
 
-    renderBackButton: PropTypes.func,
+    renderToolbar: PropTypes.func,
     renderEmpty: PropTypes.func,
     renderEmptyResult: PropTypes.func,
     renderSeparator: PropTypes.func,
@@ -384,7 +384,7 @@ export default class SearchList extends Component {
             }]}
             title={this.props.title}
             textColor={this.props.titleTextColor}
-            renderBackButton={this.props.renderBackButton || this._renderBackButton.bind(this)}
+            renderToolbar={this.props.renderToolbar || this._renderToolbar.bind(this)}
           />
 
           <SearchBar
@@ -496,21 +496,8 @@ export default class SearchList extends Component {
    * @returns {XML}
    * @private
    */
-  _renderBackButton () {
-    return (
-      <Touchable
-        onPress={this.props.onPress}>
-        <Image
-          hitSlop={{top: 10, left: 20, bottom: 10, right: 20}}
-          style={[{
-            width: 20,
-            height: 20,
-            paddingLeft: 15,
-            paddingRight: 15
-          }]}
-          source={require('./images/icon-back.png')} />
-      </Touchable>
-    )
+  _renderToolbar () {
+    return null
   }
 
   /**
