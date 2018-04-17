@@ -27,15 +27,15 @@ export default class Toolbar extends Component {
   }
 
   render () {
-    const {style} = this.props
+    const { renderToolbar, style } = this.props
+
     return (
       <Animated.View
         style={[styles.container, style]}
         shouldRasterizeIOS
         renderToHardwareTextureAndroid>
-        {this._renderBackButton()}
-        {this._renderTitle()}
-        {this._renderRightButton()}
+        
+        {renderToolbar}
       </Animated.View>
     )
   }
