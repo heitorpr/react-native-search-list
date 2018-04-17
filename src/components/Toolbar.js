@@ -10,7 +10,7 @@ import {
 import PropTypes from 'prop-types'
 import Theme from './Theme'
 
-let statusBarSize = (Platform.OS === 'ios' ? 18 : 0)
+let statusBarSize = (Platform.OS === 'ios' ? 16 : 0)
 
 export default class Toolbar extends Component {
   static propTypes = {
