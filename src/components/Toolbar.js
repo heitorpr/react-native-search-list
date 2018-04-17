@@ -94,20 +94,6 @@ let styles = StyleSheet.create({
   },
   titleTextStyle: {
     fontSize: 18,
-    fontWeight: '600',
-    fontFamily: typography.Family.Primary
+    fontWeight: '600'
   }
 })
-
-export const typography = {
-  Family: {
-    Primary: 'Campton',
-    Seconday: 'Avenir-Medium'
-  },
-  size: {
-    small:                   (fontSizeBase * 0.8),
-    medium:                  (fontSizeBase * 1),
-    large:                   (fontSizeBase * 1.5),
-    extraLarge:              (fontSizeBase * 2.5),
-  }
-}
