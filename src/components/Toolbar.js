@@ -10,7 +10,7 @@ import {
 import PropTypes from 'prop-types'
 import Theme from './Theme'
 
-let statusBarSize = (Platform.OS === 'ios' ? 16 : 0)
+let statusBarSize = (Platform.OS === 'ios' ? 20 : 0)
 
 export default class Toolbar extends Component {
   static propTypes = {
@@ -84,6 +84,7 @@ const { width } = Dimensions.get('window')
 let styles = StyleSheet.create({
   container: {
     height: Theme.size.headerHeight,
+    paddingTop: 4,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#171a23'
