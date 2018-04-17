@@ -571,6 +571,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     color: '#979797',
+    top: 3,
     fontSize: 14
   },
   separator2: {

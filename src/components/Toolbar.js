@@ -93,6 +93,7 @@ let styles = StyleSheet.create({
     flex: 1
   },
   titleTextStyle: {
-    fontSize: 18
+    fontSize: 18,
+    fontWeight: '600'
   }
 })
