@@ -88,7 +88,7 @@ let styles = StyleSheet.create({
   },
   titleStyle: {
     width: (width * 0.7),
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   titleTextStyle: {
     fontSize: 18,
