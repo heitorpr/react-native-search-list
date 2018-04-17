@@ -78,6 +78,8 @@ export default class Toolbar extends Component {
   }
 }
 
+const { width } = Dimensions.get('window')
+
 let styles = StyleSheet.create({
   container: {
     height: Theme.size.headerHeight,
