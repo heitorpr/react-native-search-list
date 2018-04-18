@@ -9,7 +9,8 @@ import {
   ListView,
   PixelRatio,
   Animated,
-  Image
+  Image,
+  Platform
 } from 'react-native'
 
 import React, { Component } from 'react'
