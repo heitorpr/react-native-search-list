@@ -27,6 +27,7 @@ import PropTypes from 'prop-types'
 import Theme from './components/Theme'
 import SearchService from './SearchService'
 import HighlightableText from './components/HighlightableText'
+import RemoveAccents from 'remove-accents'
 
 import _ from 'lodash'
 
@@ -157,7 +158,7 @@ export default class SearchList extends Component {
   }
 
   normalizeString(text) {
-    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().trim()
+    return RemoveAccents(text).toLowerCase().trim()
   }
 
   search (input) {
@@ -572,8 +573,15 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     color: '#979797',
-    top: 3,
-    fontSize: 14
+    
+    fontSize: 14,
+    ...Platform.select({
+      ios: {
+        top: 3
+      },
+      android: {
+        top: 0
+      }})
   },
   separator2: {
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
