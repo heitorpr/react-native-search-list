@@ -158,7 +158,7 @@ export default class SearchService {
       if (item) {
         // 加入到section
         let orderIndex = item.orderIndex
-        if (!isCharacter(item.orderIndex)) {
+        if (!isCharacter(item.orderIndex) || item.isPreferred) {
           orderIndex = '#'
         }
         if (!rowsWithSection[orderIndex]) {
@@ -215,7 +215,7 @@ export default class SearchService {
                 item.isCN = 1
               }
             } else {
-              item.orderIndex = firstChar.toUpperCase()
+              item.orderIndex = item.isPreferred ? '#' : firstChar.toUpperCase()
               item.isCN = 0
             }
           }
