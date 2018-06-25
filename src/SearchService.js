@@ -32,7 +32,7 @@ export default class SearchService {
     return tempResult
   }
   // FIXME 这个函数需要改造为一个字符串匹配多项
-  static generateMacherInto (source, item, inputLower, transStr, charIndexer) {
+  static generateMacherInto(source, item, inputLower, transStr, charIndexer) {
     let result = {}
     Object.assign(result, item)
     if (source) {
@@ -42,7 +42,7 @@ export default class SearchService {
         matcher.machStart = source.toLowerCase().indexOf(inputLower)
         matcher.machEnd = matcher.machStart + inputLower.length
 
-        matcher.matches.push({'start': matcher.machStart, 'end': matcher.machEnd})
+        matcher.matches.push({ 'start': matcher.machStart, 'end': matcher.machEnd })
         result.matcher = matcher
       } else {
         if (transStr && charIndexer) {
@@ -62,7 +62,7 @@ export default class SearchService {
                       find = true
                       matcher.machStart = startCharIndexer.index
                       matcher.machEnd = endCharIndexer.index + 1
-                      matcher.matches.push({'start': matcher.machStart, 'end': matcher.machEnd})
+                      matcher.matches.push({ 'start': matcher.machStart, 'end': matcher.machEnd })
                       result.matcher = matcher
                       break
                     }
@@ -82,7 +82,7 @@ export default class SearchService {
     return result
   }
 
-  static sortResultList (searchResultList, resultSortFunc) {
+  static sortResultList(searchResultList, resultSortFunc) {
     searchResultList.sort(resultSortFunc || function (a, b) {
       if (b.matcher && a.matcher) {
         if (b.matcher.machStart < a.matcher.machStart) {
@@ -96,7 +96,7 @@ export default class SearchService {
         return 0
       }
     })
-    let searchResultWithSection = {'': ''}
+    let searchResultWithSection = { '': '' }
     const rowIds = [[]]
     let tRows = rowIds[0]
     searchResultList.forEach((result) => {
@@ -109,7 +109,7 @@ export default class SearchService {
     }
   }
 
-  static generateSearchHandler (source) {
+  static generateSearchHandler(source) {
     let searchHandler = null
     if (containsChinese(source)) {
       searchHandler = {}
@@ -137,7 +137,7 @@ export default class SearchService {
     return searchHandler
   }
 
-  static parseList (srcList) {
+  static parseList(srcList, searchPreferredSection) {
     let rowsWithSection = {}
     const sectionIDs = []
     const rowIds = [[]]
@@ -158,9 +158,14 @@ export default class SearchService {
       if (item) {
         // 加入到section
         let orderIndex = item.orderIndex
-        if (!isCharacter(item.orderIndex) || item.isPreferred) {
+        if (!isCharacter(item.orderIndex)) {
           orderIndex = '#'
         }
+
+        if (item.isPreferred) {
+          orderIndex = searchPreferredSection
+        }
+
         if (!rowsWithSection[orderIndex]) {
           rowsWithSection[orderIndex] = orderIndex
           sectionIDs.push(orderIndex)
@@ -193,7 +198,7 @@ export default class SearchService {
     }
   }
 
-  static initList (srcList) {
+  static initList(srcList, searchPreferredSection) {
     srcList.forEach((item) => {
       if (item) {
         // 生成排序索引
@@ -215,7 +220,7 @@ export default class SearchService {
                 item.isCN = 1
               }
             } else {
-              item.orderIndex = item.isPreferred ? '#' : firstChar.toUpperCase()
+              item.orderIndex = item.isPreferred ? searchPreferredSection : firstChar.toUpperCase()
               item.isCN = 0
             }
           }
@@ -233,7 +238,7 @@ export default class SearchService {
     return srcList
   }
 
-  static sortList (srcList, sortFunc) {
+  static sortList(srcList, sortFunc) {
     srcList.sort(sortFunc || function (a, b) {
       if (!isCharacter(b.orderIndex)) {
         return -1
