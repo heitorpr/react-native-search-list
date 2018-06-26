@@ -141,11 +141,11 @@ export default class SearchList extends Component {
 
   initList(data = []) {
     this.copiedSource = Array.from(data)
-    this.parseInitList(SearchService.sortList(SearchService.initList(this.copiedSource, this.props.searchPreferredSection), this.props.sortFunc))
+    this.parseInitList(SearchService.sortList(SearchService.initList(this.copiedSource, this.props.searchHighlightedSection), this.props.sortFunc))
   }
 
   parseInitList(srcList) {
-    const { rowsWithSection, sectionIDs, rowIds } = SearchService.parseList(srcList, this.props.searchPreferredSection)
+    const { rowsWithSection, sectionIDs, rowIds } = SearchService.parseList(srcList, this.props.searchHighlightedSection)
     this.sectionIDs = sectionIDs
     this.rowIds = rowIds
     this.setState({

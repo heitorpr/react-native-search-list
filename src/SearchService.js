@@ -137,7 +137,7 @@ export default class SearchService {
     return searchHandler
   }
 
-  static parseList(srcList, searchPreferredSection) {
+  static parseList(srcList, searchHighlightedSection) {
     let rowsWithSection = {}
     const sectionIDs = []
     const rowIds = [[]]
@@ -162,8 +162,8 @@ export default class SearchService {
           orderIndex = '#'
         }
 
-        if (item.isPreferred) {
-          orderIndex = searchPreferredSection
+        if (item.isHighlighted) {
+          orderIndex = searchHighlightedSection
         }
 
         if (!rowsWithSection[orderIndex]) {
@@ -198,7 +198,7 @@ export default class SearchService {
     }
   }
 
-  static initList(srcList, searchPreferredSection) {
+  static initList(srcList, searchHighlightedSection) {
     srcList.forEach((item) => {
       if (item) {
         // 生成排序索引
@@ -220,7 +220,7 @@ export default class SearchService {
                 item.isCN = 1
               }
             } else {
-              item.orderIndex = item.isPreferred ? searchPreferredSection : firstChar.toUpperCase()
+              item.orderIndex = item.isHighlighted ? searchHighlightedSection : firstChar.toUpperCase()
               item.isCN = 0
             }
           }
